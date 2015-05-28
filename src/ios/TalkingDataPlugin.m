@@ -141,10 +141,10 @@
     }
     
     if (self.currPageName) {
-        [TalkingData trackPageEnd:pageName];
+        [TalkingData trackPageEnd:self.currPageName];
     }
     self.currPageName = pageName;
-    [TalkingData trackPageBegin:pageName];
+    [TalkingData trackPageBegin:self.currPageName];
 }
 
 - (void)trackPageBegin:(CDVInvokedUrlCommand*)command {
@@ -153,7 +153,7 @@
         return;
     }
     self.currPageName = pageName;
-    [TalkingData trackPageBegin:pageName];
+    [TalkingData trackPageBegin:self.currPageName];
 }
 
 - (void)trackPageEnd:(CDVInvokedUrlCommand*)command {
@@ -161,8 +161,8 @@
     if (pageName == nil || [pageName isKindOfClass:[NSNull class]]) {
         return;
     }
-    self.currPageName = nil;
     [TalkingData trackPageEnd:pageName];
+    self.currPageName = nil;
 }
 
 @end
