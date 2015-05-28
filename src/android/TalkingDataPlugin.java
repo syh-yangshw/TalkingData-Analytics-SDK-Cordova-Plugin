@@ -44,21 +44,25 @@ public class TalkingDataPlugin extends CordovaPlugin {
 	
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		if (action.equals("sessionStarted")) {
+		if (action.equals("init")) {
+    		// 初始化 TalkingData Analytics SDK
 			String appKey = args.getString(0);
 			String channelId = args.getString(1);
 			TCAgent.init(ctx, appKey, channelId);
 			return true;
-		} else if (action.equals("trackEvent")) {
+		} else if (action.equals("onEvent")) {
+    		// 触发自定义事件
 			String eventId = args.getString(0);
 			TCAgent.onEvent(ctx, eventId);
 			return true;
-		} else if (action.equals("trackEventWithLabel")) {
+		} else if (action.equals("onEventWithLabel")) {
+    		// 触发带事件标签的自定义事件
 			String eventId = args.getString(0);
 			String eventLabel = args.getString(1);
 			TCAgent.onEvent(ctx, eventId, eventLabel);
 			return true;
-		} else if (action.equals("trackEventWithParameters")) {
+		} else if (action.equals("onEventWithExtraData")) {
+    		// 触发带事件标签和更多数据的自定义事件
 			String eventId = args.getString(0);
 			String eventLabel = args.getString(1);
 			String eventDataJson = args.getString(2);
@@ -67,35 +71,35 @@ public class TalkingDataPlugin extends CordovaPlugin {
 				TCAgent.onEvent(ctx, eventId, eventLabel, eventData);
 			}
 			return true;
-		} else if (action.equals("trackPage")) {
+		} else if (action.equals("onPage")) {
+			// 触发页面事件，在页面加载完毕的时候调用，记录页面名称和使用时长，一个页面调用这个接口后就不用再调用 trackPageBegin 和 trackPageEnd 接口了
 			String pageName = args.getString(0);
+			// 如果上次记录的页面名称不为空，则本次触发为新页面，触发上一个页面的 onPageEnd
 			if (currPageName != null) {
 				TCAgent.onPageEnd(act, currPageName);
 			}
+			// 继续触发本次页面的 onPageBegin 事件
 			currPageName = pageName;
 			TCAgent.onPageStart(act, currPageName);
 			return true;
-		} else if (action.equals("trackPageBegin")) {
+		} else if (action.equals("onPageBegin")) {
+			// 触发页面事件，在页面加载完毕的时候调用，用于记录页面名称和使用时长，和 trackPageEnd 配合使用
 			String pageName = args.getString(0);
 			currPageName = pageName;
 			TCAgent.onPageStart(act, currPageName);
 			return true;
-		} else if (action.equals("trackPageEnd")) {
+		} else if (action.equals("onPageEnd")) {
+			// 触发页面事件，在页面加载完毕的时候调用，用于记录页面名称和使用时长，和 trackPageBegin 配合使用
 			String pageName = args.getString(0);
 			TCAgent.onPageEnd(act, pageName);
 			currPageName = null;
 			return true;
 		} else if (action.equals("getDeviceId")) {
+			// 获取 TalkingData Device Id，并将其作为参数传入 JS 的回调函数
 			String deviceId = TCAgent.getDeviceId(ctx);
 			callbackContext.success(deviceId);
 			return true;
-		} else if (action.equals("setSignalReportEnabled")) {
-			TCAgent.setReportUncaughtExceptions(args.getBoolean(0));
-			return true;
-		} else if (action.equals("setLogEnabled")) {
-			TCAgent.LOG_ON = args.getBoolean(0);
-			return true;
-		}
+		} 
 		return false;
 	}
 	

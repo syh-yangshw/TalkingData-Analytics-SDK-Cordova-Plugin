@@ -41,7 +41,7 @@
     return nil;
 }
 
-- (void)sessionStarted:(CDVInvokedUrlCommand*)command {
+- (void)init:(CDVInvokedUrlCommand*)command {
     NSString *appKey = [command.arguments objectAtIndex:0];
     if (appKey == nil || [appKey isKindOfClass:[NSNull class]]) {
         return;
@@ -59,7 +59,7 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void)setExceptionReportEnabled:(CDVInvokedUrlCommand*)command {
+- (void)setExceptionReportEnability:(CDVInvokedUrlCommand*)command {
     NSString *arg0 = [command.arguments objectAtIndex:0];
     if (arg0 == nil || [arg0 isKindOfClass:[NSNull class]]) {
         return;
@@ -68,7 +68,7 @@
     [TalkingData setExceptionReportEnabled:enabled];
 }
 
-- (void)setSignalReportEnabled:(CDVInvokedUrlCommand*)command {
+- (void)setSignalReportEnability:(CDVInvokedUrlCommand*)command {
     NSString *arg0 = [command.arguments objectAtIndex:0];
     if (arg0 == nil || [arg0 isKindOfClass:[NSNull class]]) {
         return;
@@ -88,7 +88,7 @@
     [TalkingData setLatitude:latitude longitude:longitude];
 }
 
-- (void)setLogEnabled:(CDVInvokedUrlCommand*)command {
+- (void)setLogEnability:(CDVInvokedUrlCommand*)command {
     NSString *arg0 = [command.arguments objectAtIndex:0];
     if (arg0 == nil || [arg0 isKindOfClass:[NSNull class]]) {
         return;
@@ -97,7 +97,7 @@
     [TalkingData setLogEnabled:enabled];
 }
 
-- (void)trackEvent:(CDVInvokedUrlCommand*)command {
+- (void)onEvent:(CDVInvokedUrlCommand*)command {
     NSString *eventId = [command.arguments objectAtIndex:0];
     if (eventId == nil || [eventId isKindOfClass:[NSNull class]]) {
         return;
@@ -105,7 +105,7 @@
     [TalkingData trackEvent:eventId];
 }
 
-- (void)trackEventWithLabel:(CDVInvokedUrlCommand*)command {
+- (void)onEventWithLabel:(CDVInvokedUrlCommand*)command {
     NSString *eventId = [command.arguments objectAtIndex:0];
     if (eventId == nil || [eventId isKindOfClass:[NSNull class]]) {
         return;
@@ -117,7 +117,7 @@
     [TalkingData trackEvent:eventId label:eventLabel];
 }
 
-- (void)trackEventWithParameters:(CDVInvokedUrlCommand*)command {
+- (void)onEventWithExtraData:(CDVInvokedUrlCommand*)command {
     NSString *eventId = [command.arguments objectAtIndex:0];
     if (eventId == nil || [eventId isKindOfClass:[NSNull class]]) {
         return;
@@ -134,7 +134,7 @@
     [TalkingData trackEvent:eventId label:eventLabel parameters:parameters];
 }
 
-- (void)trackPage:(CDVInvokedUrlCommand*)command {
+- (void)onPage:(CDVInvokedUrlCommand*)command {
     NSString *pageName = [command.arguments objectAtIndex:0];
     if (pageName == nil || [pageName isKindOfClass:[NSNull class]]) {
         return;
@@ -147,7 +147,7 @@
     [TalkingData trackPageBegin:self.currPageName];
 }
 
-- (void)trackPageBegin:(CDVInvokedUrlCommand*)command {
+- (void)onPageBegin:(CDVInvokedUrlCommand*)command {
     NSString *pageName = [command.arguments objectAtIndex:0];
     if (pageName == nil || [pageName isKindOfClass:[NSNull class]]) {
         return;
@@ -156,7 +156,7 @@
     [TalkingData trackPageBegin:self.currPageName];
 }
 
-- (void)trackPageEnd:(CDVInvokedUrlCommand*)command {
+- (void)onPageEnd:(CDVInvokedUrlCommand*)command {
     NSString *pageName = [command.arguments objectAtIndex:0];
     if (pageName == nil || [pageName isKindOfClass:[NSNull class]]) {
         return;
