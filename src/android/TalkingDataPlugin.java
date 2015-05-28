@@ -73,17 +73,17 @@ public class TalkingDataPlugin extends CordovaPlugin {
 				TCAgent.onPageEnd(act, currPageName);
 			}
 			currPageName = pageName;
-			TCAgent.onPageStart(act, pageName);
+			TCAgent.onPageStart(act, currPageName);
 			return true;
 		} else if (action.equals("trackPageBegin")) {
 			String pageName = args.getString(0);
 			currPageName = pageName;
-			TCAgent.onPageStart(act, pageName);
+			TCAgent.onPageStart(act, currPageName);
 			return true;
 		} else if (action.equals("trackPageEnd")) {
 			String pageName = args.getString(0);
-			currPageName = null;
 			TCAgent.onPageEnd(act, pageName);
+			currPageName = null;
 			return true;
 		} else if (action.equals("getDeviceId")) {
 			String deviceId = TCAgent.getDeviceId(ctx);

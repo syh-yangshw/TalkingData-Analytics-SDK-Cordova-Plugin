@@ -3,7 +3,9 @@
     
     <name>TalkingData</name>
     
-    <asset src="www/TalkingData.js" target="js/TalkingData.js" />
+    <js-module src="www/TalkingData.js" name="TalkingData">
+        <clobbers target="TalkingData" />
+    </js-module>
     
     <!-- ios -->
     <platform name="ios">
