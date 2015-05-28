@@ -9,4 +9,4 @@ Cordova plugin for TalkingData Analytics SDK integration
 
 进入 Cordova 工程目录，执行下面的命令添加 Plugin
 
-	`cordova plugin add https://github.com/xhrwang/TalkingData-SDK-Cordova.git`
+	cordova plugin add https://github.com/TalkingData/TalkingData-Analytics-SDK-Cordova-Plugin.git
