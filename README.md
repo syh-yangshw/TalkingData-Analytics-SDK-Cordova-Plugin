@@ -1,4 +1,4 @@
-# TalkingData-Analytics-SDK-Cordova-Plugin
+## TalkingData-Analytics-SDK-Cordova-Plugin
 Cordova plugin for TalkingData Analytics SDK integration
 
 ### What
