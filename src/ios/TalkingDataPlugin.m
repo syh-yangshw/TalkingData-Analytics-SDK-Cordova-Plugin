@@ -29,6 +29,18 @@
 }
 #endif
 
+- (NSDictionary *)jsonToDictionary:(NSString *)jsonStr {
+    if (jsonStr) {
+        NSError* error = nil;
+        id object = [NSJSONSerialization JSONObjectWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (error == nil && [object isKindOfClass:[NSDictionary class]]) {
+            return object;
+        }
+    }
+    
+    return nil;
+}
+
 - (void)sessionStarted:(CDVInvokedUrlCommand*)command {
     NSString *appKey = [command.arguments objectAtIndex:0];
     if (appKey == nil || [appKey isKindOfClass:[NSNull class]]) {
@@ -41,19 +53,10 @@
     [TalkingData sessionStarted:appKey withChannelId:channelId];
 }
 
-- (void)openDebugLog:(CDVInvokedUrlCommand*)command {
-    NSString *arg0 = [command.arguments objectAtIndex:0];
-    if (arg0 == nil || [arg0 isKindOfClass:[NSNull class]]) {
-        return;
-    }
-    BOOL enabled = [arg0 boolValue];
-    [TalkingData openDebugLog:enabled];
-}
-
 - (void)getDeviceId:(CDVInvokedUrlCommand*)command {
     NSString *deviceId = [TalkingData getDeviceID];
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceId];
-    [self writeJavascript:[pluginResult toSuccessCallbackString:command.callbackId]];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)setExceptionReportEnabled:(CDVInvokedUrlCommand*)command {
@@ -126,7 +129,7 @@
     NSDictionary *parameters = nil;
     NSString *parametersJson = [command.arguments objectAtIndex:2];
     if (![parametersJson isKindOfClass:[NSNull class]]) {
-        parameters = [parametersJson JSONObject];
+        parameters = [self jsonToDictionary:parametersJson];
     }
     [TalkingData trackEvent:eventId label:eventLabel parameters:parameters];
 }
@@ -138,7 +141,7 @@
     }
     
     if (self.currPageName) {
-        [TalkingData trackPageEnd:self.pageName];
+        [TalkingData trackPageEnd:pageName];
     }
     self.currPageName = pageName;
     [TalkingData trackPageBegin:pageName];

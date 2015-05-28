@@ -12,7 +12,6 @@
 
 @interface TalkingDataPlugin : CDVPlugin
 - (void)sessionStarted:(CDVInvokedUrlCommand*)command;
-- (void)openDebugLog:(CDVInvokedUrlCommand*)command;
 - (void)getDeviceId:(CDVInvokedUrlCommand*)command;
 - (void)setExceptionReportEnabled:(CDVInvokedUrlCommand*)command;
 - (void)setSignalReportEnabled:(CDVInvokedUrlCommand*)command;
