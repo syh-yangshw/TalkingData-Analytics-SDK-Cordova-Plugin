@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://http://www.talkinggame.com" id="TalkingData" version="1.2.2">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="TalkingData" 
+        version="1.2.2">
     
     <name>TalkingData</name>
     
