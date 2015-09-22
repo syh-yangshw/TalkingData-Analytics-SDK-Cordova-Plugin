@@ -1,12 +1,8 @@
-## TalkingData-Analytics-SDK-Cordova-Plugin
-Cordova plugin for TalkingData Analytics SDK integration.
-This plugin can also be used in PhoneGap projects.
+## Cordova Plugin for TalkingData Analytics SDK 集成文档  
 
-### What
+Cordova Plugin for TalkingData Analytics SDK 适用于 __Cordova__ 和 __PhoneGap__ 跨平台项目。
 
-在 [Cordova](https://cordova.apache.org/) 工程中集成 TalkingData Analytics SDK 的 Plugin，方便在 __Cordova__ 和 __PhoneGap__ 工程中集成 TalkingData Analytics SDK。
-
-### How to use
+### 集成方式
 
 1. 下载项目到本地目录：
 
@@ -20,9 +16,11 @@ This plugin can also be used in PhoneGap projects.
 	- iOS 平台  
 	使用最新版本 SDK 的 `.h` 头文件和 `.a` 静态库文件替换 Plugin 中 `src\ios` 文件夹下的同名文件。
 
+	之后，参考 [Analytics SDK 集成文档](https://www.talkingdata.com/app/document_web/index.jsp?statistics) 配置工程。
+
 3. 进入 Cordova 工程目录，执行下面的命令添加 Plugin
 
-	cordova plugin add "[Plugin 路径]"
+		cordova plugin add "[Plugin 路径]"
 
 4. 访问 [TalkingData 官网](https://www.talkingdata.com/) 注册帐号并按照提示申请 `AppId`。
 5. 使用申请到的 `AppId` 在 Cordova 工程的 Native 代码中集成 SDK 并初始化。
@@ -33,7 +31,7 @@ This plugin can also be used in PhoneGap projects.
 	        TCAgent.init(this, "[Your AppId]", "[Your ChannelId]");
 	        TCAgent.setReportUncaughtExceptions(true);
 
-	`[Your AppId]` 就是刚刚申请的 AppId，`[Your ChannelId]` 是应用的渠道号。
+		`[Your AppId]` 就是刚刚申请的 AppId，`[Your ChannelId]` 是应用的渠道号。
 
 
 	- iOS 平台  
@@ -43,7 +41,7 @@ This plugin can also be used in PhoneGap projects.
     		[TalkingData setLogEnabled:YES];
     		[TalkingData sessionStarted:@"[Your AppId]" withChannelId:@"[Your ChannelId]"];
 
-	同样的，`[Your AppId]` 就是刚刚申请的 AppId，`[Your ChannelId]` 是应用的渠道号。
+		同样的，`[Your AppId]` 就是刚刚申请的 AppId，`[Your ChannelId]` 是应用的渠道号。
 
 6. 编译工程：
 
