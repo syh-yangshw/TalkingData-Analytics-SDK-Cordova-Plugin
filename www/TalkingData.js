@@ -33,7 +33,7 @@ var TalkingData = {
         cordova.exec(null, null, "TalkingData", "onEventWithExtraData", [eventId, eventLabel, eventDataJson]);
     },
 
-    // 触发页面事件，在页面加载完毕的时候调用，记录页面名称和使用时长，一个页面调用这个接口后就不用再调用 trackPageBegin 和 trackPageEnd 接口了
+    // 触发页面事件，在页面加载完毕的时候调用，记录页面名称和使用时长，一个页面调用这个接口后就不用再调用 onPageBegin 和 onPageEnd 接口了
     // pageName  : 页面自定义名称
     onPage:function(pageName) {
         cordova.exec(null, null, "TalkingData", "onPage", [pageName]);
