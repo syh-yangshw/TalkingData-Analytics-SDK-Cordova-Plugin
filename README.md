@@ -6,7 +6,7 @@ Cordova Plugin for TalkingData Analytics SDK 适用于 __Cordova__ 和 __PhoneGa
 
 1. 下载项目到本地目录：
 
-	git clone git@github.com:TalkingData/TalkingData-Analytics-SDK-Cordova-Plugin.git
+	git clone https://github.com/TalkingData/TalkingData-Analytics-SDK-Cordova-Plugin.git
 
 2. 访问 [TalkingData 官网](https://www.talkingdata.com/) 下载最新版本的 Android 和 iOS 平台 Analytics SDK。Plugin 中的 SDK 可能不是最新版本，需要检查并使用刚刚下载的新版本，进入克隆到本地的 Plugin 目录：
 	- Android 平台  

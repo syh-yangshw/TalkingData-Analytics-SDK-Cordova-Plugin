@@ -13,6 +13,9 @@
     <!-- ios -->
     <platform name="ios">
         
+        <header-file src="src/ios/TalkingDataSMS.h" />
+        <header-file src="src/ios/TalkingDataSMSPlugin.h" />
+        <source-file src="src/ios/TalkingDataSMSPlugin.m" />
         <header-file src="src/ios/TalkingDataPlugin.h" />
         <source-file src="src/ios/TalkingDataPlugin.m" />
         <header-file src="src/ios/TalkingData.h" />
@@ -22,8 +25,12 @@
             <feature name="TalkingData">
                 <param name="ios-package" value="TalkingDataPlugin"/>
             </feature>
+            <feature name="TalkingDataSMS">
+                <param name="ios-package" value="TalkingDataSMSPlugin"/>
+            </feature>
         </config-file>
         
+        <framework src="CoreMotion.framework" />
         <framework src="SystemConfiguration.framework" />
         <framework src="Security.framework" />
         <framework src="CoreTelephony.framework" />
@@ -36,19 +43,27 @@
     <platform name="android">
         
         <source-file src="src/android/TalkingData.jar" target-dir="libs" />
-        <source-file src="src/android/TalkingDataPlugin.java" target-dir="src/com/talkingdata/sdk" />
+        <source-file src="src/android/TalkingDataPlugin.java" target-dir="src/com/talkingdata/analytics" />
+        <source-file src="src/android/TalkingDataSMSPlugin.java" target-dir="src/com/talkingdata/analytics" />
         
         <config-file target="res/xml/config.xml" parent="/widget/plugins">
             <feature name="TalkingData">
-                <param name="android-package" value="com.talkingdata.sdk.TalkingDataPlugin"/>
+                <param name="android-package" value="com.talkingdata.analytics.TalkingDataPlugin"/>
+            </feature>
+            <feature name="TalkingDataSMS">
+                <param name="android-package" value="com.talkingdata.analytics.TalkingDataSMSPlugin"/>
             </feature>
         </config-file>
         
         <config-file target="AndroidManifest.xml" parent="/manifest">
-            <uses-permission android:name="android.permission.INTERNET"/>
-            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
         
     </platform>

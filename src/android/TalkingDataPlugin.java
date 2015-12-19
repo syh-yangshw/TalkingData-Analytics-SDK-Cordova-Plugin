@@ -1,4 +1,4 @@
-package com.talkingdata.sdk;
+package com.talkingdata.analytics;
 
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;

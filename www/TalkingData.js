@@ -39,13 +39,13 @@ var TalkingData = {
         cordova.exec(null, null, "TalkingData", "onPage", [pageName]);
     },
 
-    // 触发页面事件，在页面加载完毕的时候调用，用于记录页面名称和使用时长，和 trackPageEnd 配合使用
+    // 触发页面事件，在页面加载完毕的时候调用，用于记录页面名称和使用时长，和 onPageEnd 配合使用
     // pageName  : 页面自定义名称
     onPageBegin:function(pageName) {
         cordova.exec(null, null, "TalkingData", "onPageBegin", [pageName]);
     },
 
-    // 触发页面事件，在页面加载完毕的时候调用，用于记录页面名称和使用时长，和 trackPageBegin 配合使用
+    // 触发页面事件，在页面加载完毕的时候调用，用于记录页面名称和使用时长，和 onPageBegin 配合使用
     // pageName  : 页面自定义名称
     onPageEnd:function(pageName) {
         cordova.exec(null, null, "TalkingData", "onPageEnd", [pageName]);
