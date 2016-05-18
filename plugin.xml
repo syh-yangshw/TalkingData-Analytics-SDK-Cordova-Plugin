@@ -33,6 +33,7 @@
         <framework src="CoreMotion.framework" />
         <framework src="SystemConfiguration.framework" />
         <framework src="Security.framework" />
+        <framework src="CFNetwork.framework" />
         <framework src="CoreTelephony.framework" />
         <framework src="AdSupport.framework" weak="true" />
         <framework src="libz.dylib" />
