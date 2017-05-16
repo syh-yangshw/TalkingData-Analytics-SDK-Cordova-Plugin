@@ -1,0 +1,36 @@
+{
+  "name": "TalkingData",
+  "version": "1.0.1",
+  "description": "Makes your Cordova application enable to use the TalkingData",
+  "cordova": {
+    "id": "TalkingData",
+    "platforms": [
+      "android", "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xybjava/TalkingData-Analytics-SDK-Cordova-Plugin.git"
+  },
+  "keywords": [
+    "cordova",
+    "chromium",
+    "TalkingData",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "engines": [{
+    "name": "cordova-android",
+    "version": ">=4"
+  }, {
+    "name": "cordova-plugman",
+    "version": ">=4.2.0"
+  }],
+  "author": "",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/xybjava/TalkingData-Analytics-SDK-Cordova-Plugin"
+  },
+  "homepage": "https://github.com/xybjava/TalkingData-Analytics-SDK-Cordova-Plugin"
+}
