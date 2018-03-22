@@ -6,6 +6,9 @@
     
     <name>TalkingData</name>
     
+    <preference name="APP_KEY" />
+    <preference name="APP_NAME" />
+
     <js-module src="www/TalkingData.js" name="TalkingData">
         <clobbers target="TalkingData" />
     </js-module>
@@ -42,7 +45,9 @@
     
     <!-- android -->
     <platform name="android">
-        
+        <hook type="after_plugin_install" src="scripts/application_install.js" />
+        <hook type="before_plugin_uninstall" src="scripts/application_uninstall.js" /> 
+
         <source-file src="src/android/TalkingData.jar" target-dir="libs" />
         <source-file src="src/android/TalkingDataPlugin.java" target-dir="src/com/talkingdata/analytics" />
         <source-file src="src/android/TalkingDataSMSPlugin.java" target-dir="src/com/talkingdata/analytics" />

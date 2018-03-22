@@ -2,6 +2,11 @@
 
 Cordova Plugin for TalkingData Analytics SDK 适用于 __Cordova__ 和 __PhoneGap__ 跨平台项目。
 
+
+### 对于本版本安卓的修改
+	- 增加APP_KEY参数,使其可以在安卓MainActivity上注册使用
+	- 增加APP_NAME参数,指定安卓初始化时的app名称
+
 ### 集成方式
 
 1. 下载项目到本地目录：
