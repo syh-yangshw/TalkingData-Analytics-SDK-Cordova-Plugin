@@ -23,7 +23,7 @@ module.exports = function(context) {
   var config = new ConfigParser(path.join(context.opts.projectRoot, "config.xml"));
   var packageName = config.android_packageName() || config.packageName();
   var packagePath = packageName.replace(/\./g , "/");
-  console.info(packagePath);
+  //console.info(packagePath);
   //通过packagePath取得mainActivitu.java的位置
   var mainActivity = path.join(platformRoot,packagePath,'MainActivity.java');
   //console.info(mainActivity);
@@ -40,7 +40,7 @@ module.exports = function(context) {
       var replaceValue = "loadUrl(launchUrl);"+"\n";
       var talkingDataString = "TCAgent.LOG_ON = true;"+"\n"
                             + 'TCAgent.init(this, "'+appKey+'","'+appName+'");'+"\n"
-                            + "TCAgent.setReportUncaughtExceptions(true);"+"\n";
+                            + "TCAgent.setReportUncaughtExceptions(true);";
       data = data.replace(replaceValue,replaceValue+talkingDataString);
       //console.info(data);
       fs.writeFileSync(mainActivity, data);
