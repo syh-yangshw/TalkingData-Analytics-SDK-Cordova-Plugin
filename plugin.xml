@@ -15,7 +15,8 @@
     
     <!-- ios -->
     <platform name="ios">
-        
+        <hook type="after_plugin_install" src="scripts/ios_install.js" />
+        <hook type="before_plugin_uninstall" src="scripts/ios_uninstall.js" />
         <header-file src="src/ios/TalkingDataSMS.h" />
         <header-file src="src/ios/TalkingDataSMSPlugin.h" />
         <source-file src="src/ios/TalkingDataSMSPlugin.m" />
@@ -45,8 +46,8 @@
     
     <!-- android -->
     <platform name="android">
-        <hook type="after_plugin_install" src="scripts/application_install.js" />
-        <hook type="before_plugin_uninstall" src="scripts/application_uninstall.js" /> 
+        <hook type="after_plugin_install" src="scripts/android_install.js" />
+        <hook type="before_plugin_uninstall" src="scripts/android_uninstall.js" /> 
 
         <source-file src="src/android/TalkingData.jar" target-dir="libs" />
         <source-file src="src/android/TalkingDataPlugin.java" target-dir="src/com/talkingdata/analytics" />

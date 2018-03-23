@@ -29,8 +29,6 @@ module.exports = function(context) {
       var talkingDataPackage = "import com.tendcloud.tenddata.TCAgent;"+"\\n";
       data = data.replace(eval("/"+talkingDataPackage+"/g"),"");
       //删除对应初始化代码
-      var startReplace = "TCAgent.LOG_ON";
-      var endReplace = "TCAgent.setReportUncaughtExceptions(true);"+"\\n";
       data = data.replace(/TCAgent[\s\S]+;/g,"");
       //console.info(data);
       fs.writeFileSync(mainActivity, data);
