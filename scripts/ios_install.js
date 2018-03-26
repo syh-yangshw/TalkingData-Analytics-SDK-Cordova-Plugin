@@ -37,7 +37,7 @@ module.exports = function(context) {
       var replaceValue = 'self.viewController = [[MainViewController alloc] init];';
       var talkingDataString = "[TalkingData setSignalReportEnabled:YES];"+"\n"
                             + "[TalkingData setLogEnabled:YES];"+"\n"
-                            + '[TalkingData sessionStarted:@["'+appKey+'"] withChannelId:@["'+appName+'"]];'+"\n";
+                            + '[TalkingData sessionStarted:@"'+appKey+'" withChannelId:@"'+appName+'"];'+"\n";
       data = data.replace(replaceValue,talkingDataString+replaceValue);
       //console.info(data);
       fs.writeFileSync(classPath, data);
