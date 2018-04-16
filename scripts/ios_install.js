@@ -3,15 +3,6 @@ module.exports = function(context) {
 	var fs = context.requireCordovaModule('fs'),
 		path = context.requireCordovaModule('path');
   var platformRoot = path.join(context.opts.projectRoot, 'platforms/ios');
-  //获取APP_KEY
-  var cmdLine = context.cmdLine;
-  var appKey = cmdLine.match(/APP_KEY=([a-zA-Z0-9]+)/)[1];
-  //获取APP_NAME
-  var appName = cmdLine.match(/APP_NAME=([a-zA-Z0-9]+)/)[1];
-  //console.info(appKey);
-  if(!appKey || !appName){
-    throw new Error('Unable to find this APP_KEY OR APP_NAME');
-  }
   var ConfigParser = null;
   try {
       //在cordova的nodemodules里面获取对象
@@ -23,6 +14,30 @@ module.exports = function(context) {
   var config = new ConfigParser(path.join(context.opts.projectRoot, "config.xml"));
   //获取应用名称
   var newProjectName = config.name();
+  //获取APP_KEY
+  var cmdLine = context.cmdLine;
+  var appKey = cmdLine.match(/APP_KEY=([a-zA-Z0-9]+)/)&&cmdLine.match(/APP_KEY=([a-zA-Z0-9]+)/)[1];
+  var appName = cmdLine.match(/APP_NAME=([a-zA-Z0-9]+)/)&&cmdLine.match(/APP_NAME=([a-zA-Z0-9]+)/)[1];
+  if(!appKey || !appName){
+    var plugins = config.getPlugins();
+    if(!plugins || plugins.length == 0){
+      throw new Error('Unable to find TalkingData');
+    }else{
+      plugins = plugins.filter(function (plugin){
+        if(plugin.name == 'TalkingData')
+          return true;
+        return false;
+      });
+      if(plugins && plugins.length >0){
+        appKey = plugins[0].variables['APP_KEY'];
+        appName = plugins[0].variables['APP_NAME'];
+      }
+      if(!appKey || !appName){
+        throw new Error('Unable to find this APP_KEY OR APP_NAME');
+      }
+    }
+  }
+
   //定位ios的class存放的地方
   var classPath = path.join(platformRoot,newProjectName,"Classes","AppDelegate.m");
   //console.info(classPath);
