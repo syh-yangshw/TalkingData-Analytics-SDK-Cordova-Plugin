@@ -37,25 +37,19 @@ module.exports = function(context) {
       }
     }
   }
-
   //定位ios的class存放的地方
   var classPath = path.join(platformRoot,newProjectName,"Classes","AppDelegate.m");
   //console.info(classPath);
-
   if(fs.existsSync(classPath)) {
-		fs.readFile(classPath, 'utf8', function(err, data) {
-			if(err) {
-				throw new Error('Unable to find mainActivity.java: ' + err);
-      }
-      var appPackage = '#import "AppDelegate.h"';
-      data = data.replace(appPackage,appPackage+"\n"+'#import "TalkingData.h"');
-      var replaceValue = 'self.viewController = [[MainViewController alloc] init];';
-      var talkingDataString = "[TalkingData setSignalReportEnabled:YES];"+"\n"
-                            + "[TalkingData setLogEnabled:YES];"+"\n"
-                            + '[TalkingData sessionStarted:@"'+appKey+'" withChannelId:@"'+appName+'"];'+"\n";
-      data = data.replace(replaceValue,talkingDataString+replaceValue);
-      //console.info(data);
-      fs.writeFileSync(classPath, data);
-		});
+    var data = fs.readFileSync(classPath,'utf-8');
+    var appPackage = '#import "AppDelegate.h"';
+    data = data.replace(appPackage,appPackage+"\n"+'#import "TalkingData.h"');
+    var replaceValue = 'self.viewController = [[MainViewController alloc] init];';
+    var talkingDataString = "[TalkingData setSignalReportEnabled:YES];"+"\n"
+                          + "[TalkingData setLogEnabled:YES];"+"\n"
+                          + '[TalkingData sessionStarted:@"'+appKey+'" withChannelId:@"'+appName+'"];'+"\n";
+    data = data.replace(replaceValue,talkingDataString+replaceValue);
+    //console.info(data);
+    fs.writeFileSync(classPath, data);
 	}
 }
